@@ -6,41 +6,59 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>447</width>
-    <height>112</height>
+    <width>387</width>
+    <height>120</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>387</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>120</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>6</number>
+   </property>
    <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
+    <enum>QLayout::SetMinimumSize</enum>
    </property>
    <property name="leftMargin">
-    <number>9</number>
+    <number>6</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
+    <number>6</number>
    </property>
    <property name="rightMargin">
-    <number>9</number>
+    <number>6</number>
    </property>
    <property name="bottomMargin">
-    <number>9</number>
+    <number>6</number>
    </property>
    <item>
     <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
      <item row="0" column="1">
       <widget class="QLabel" name="label_name">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -56,7 +74,7 @@
      <item row="1" column="1">
       <widget class="QLabel" name="label_sharePath">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -77,6 +95,12 @@
      </item>
      <item row="0" column="0" rowspan="2">
       <widget class="QLabel" name="label_icon">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -85,22 +109,22 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="shareUserVerticalLayout">
+    <layout class="QVBoxLayout" name="shareUserVerticalLayout" stretch="">
      <property name="spacing">
       <number>0</number>
      </property>
      <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
+      <enum>QLayout::SetMinimumSize</enum>
      </property>
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="shareLinkVerticalLayout">
+    <layout class="QVBoxLayout" name="shareLinkVerticalLayout" stretch="">
      <property name="spacing">
       <number>0</number>
      </property>
      <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
+      <enum>QLayout::SetMinimumSize</enum>
      </property>
     </layout>
    </item>
@@ -110,21 +134,30 @@
       <number>0</number>
      </property>
      <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
+      <enum>QLayout::SetMinimumSize</enum>
      </property>
      <property name="rightMargin">
-      <number>6</number>
+      <number>20</number>
      </property>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>350</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Close</set>
+       </property>
+       <property name="centerButtons">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
