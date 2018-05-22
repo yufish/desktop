@@ -57,15 +57,15 @@ ShareDialog::ShareDialog(QPointer<AccountState> accountState,
 
     _ui->setupUi(this);
 
-    QPushButton *closeButton = _ui->buttonBox->button(QDialogButtonBox::Close);
-    connect(closeButton, &QAbstractButton::clicked, this, &QWidget::close);
+//    QPushButton *closeButton = _ui->buttonBox->button(QDialogButtonBox::Close);
+//    connect(closeButton, &QAbstractButton::clicked, this, &QWidget::close);
 
     // We want to act on account state changes
     connect(_accountState.data(), &AccountState::stateChanged, this, &ShareDialog::slotAccountStateChanged);
 
     // Because people press enter in the dialog and we don't want to close for that
-    closeButton->setDefault(false);
-    closeButton->setAutoDefault(false);
+//    closeButton->setDefault(false);
+//    closeButton->setAutoDefault(false);
 
     // Set icon
     QFileInfo f_info(_localPath);
@@ -86,7 +86,6 @@ ShareDialog::ShareDialog(QPointer<AccountState> accountState,
     f.setPointSize(f.pointSize() * 1.4);
     _ui->label_name->setFont(f);
 
-    _ui->label_sharePath->setWordWrap(true);
     QString ocDir(_sharePath);
     ocDir.truncate(ocDir.length() - fileName.length());
 
@@ -109,9 +108,9 @@ ShareDialog::ShareDialog(QPointer<AccountState> accountState,
     this->setWindowTitle(tr("%1 Sharing").arg(Theme::instance()->appNameGUI()));
 
     if (!accountState->account()->capabilities().shareAPI()) {
-        auto label = new QLabel(tr("The server does not allow sharing"));
-        label->setWordWrap(true);
-        label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        //auto label = new QLabel(tr("The server does not allow sharing"));
+        //label->setWordWrap(true);
+        //label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         //layout()->replaceWidget(_ui->shareWidgets, label);
         return;
     }
@@ -196,7 +195,7 @@ void ShareDialog::showSharingUi()
         auto label = new QLabel(this);
         label->setText(tr("The file can not be shared because it was shared without sharing permission."));
         label->setWordWrap(true);
-        label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        //label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         //layout()->replaceWidget(_ui->shareWidgets, label);
         return;
     }

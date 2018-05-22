@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>120</height>
+    <width>380</width>
+    <height>180</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,51 +18,54 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>390</width>
-    <height>120</height>
+    <width>380</width>
+    <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>120</height>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0">
    <property name="spacing">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="sizeConstraint">
     <enum>QLayout::SetMinimumSize</enum>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>20</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>5</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>10</number>
    </property>
    <item>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetMinimumSize</enum>
      </property>
      <property name="leftMargin">
-      <number>6</number>
+      <number>0</number>
      </property>
      <property name="topMargin">
-      <number>6</number>
+      <number>0</number>
      </property>
      <property name="rightMargin">
-      <number>6</number>
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>0</number>
      </property>
      <item row="0" column="1">
       <widget class="QLabel" name="label_name">
@@ -72,11 +75,26 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
        <property name="text">
         <string>share label</string>
        </property>
        <property name="textFormat">
         <enum>Qt::PlainText</enum>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="indent">
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -87,6 +105,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -100,6 +124,12 @@
        <property name="textFormat">
         <enum>Qt::PlainText</enum>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="indent">
+        <number>0</number>
+       </property>
       </widget>
      </item>
      <item row="0" column="0" rowspan="2">
@@ -110,85 +140,99 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" name="shareUserVerticalLayout" stretch="">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-    </layout>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" name="shareLinkVerticalLayout" stretch="">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="buttonBoxLayout" stretch="0">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="leftMargin">
-      <number>6</number>
-     </property>
-     <property name="topMargin">
-      <number>6</number>
-     </property>
-     <property name="rightMargin">
-      <number>6</number>
-     </property>
-     <property name="bottomMargin">
-      <number>6</number>
-     </property>
-     <item>
-      <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="minimumSize">
         <size>
-         <width>365</width>
+         <width>60</width>
          <height>0</height>
         </size>
        </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Close</set>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
        </property>
-       <property name="centerButtons">
-        <bool>false</bool>
+       <property name="text">
+        <string>Icon</string>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <property name="indent">
+        <number>0</number>
        </property>
       </widget>
      </item>
     </layout>
    </item>
+   <item>
+    <layout class="QVBoxLayout" name="shareUserVerticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="shareLinkVerticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Close</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../client.qrc">
+       <normaloff>:/client/resources/dialog-close.png</normaloff>:/client/resources/dialog-close.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../client.qrc"/>
+ </resources>
  <connections/>
 </ui>

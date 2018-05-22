@@ -104,7 +104,7 @@ ShareUserGroupWidget::ShareUserGroupWidget(AccountPtr account,
     _completionTimer.setSingleShot(true);
     _completionTimer.setInterval(600);
 
-    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
+    //setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
     _ui->errorLabel->hide();
 
     // Setup the sharee search progress indicator
