@@ -100,6 +100,7 @@ ShareUserGroupWidget::ShareUserGroupWidget(AccountPtr account,
     // Queued connection so this signal is recieved after textChanged
     connect(_ui->shareeLineEdit, &QLineEdit::textEdited,
         this, &ShareUserGroupWidget::slotLineEditTextEdited, Qt::QueuedConnection);
+    _ui->shareeLineEdit->installEventFilter(this);
     connect(&_completionTimer, &QTimer::timeout, this, &ShareUserGroupWidget::searchForSharees);
     _completionTimer.setSingleShot(true);
     _completionTimer.setInterval(600);
@@ -151,15 +152,18 @@ ShareUserGroupWidget::~ShareUserGroupWidget()
 void ShareUserGroupWidget::on_shareeLineEdit_textChanged(const QString &)
 {
     _completionTimer.stop();
+    emit togglePublicLinkShare(false);
 }
 
 void ShareUserGroupWidget::slotLineEditTextEdited(const QString &text)
 {
+    qDebug() << "EDITING!!!!";
     _disableCompleterActivated = false;
     // First textChanged is called first and we stopped the timer when the text is changed, programatically or not
     // Then we restart the timer here if the user touched a key
     if (!text.isEmpty()) {
         _completionTimer.start();
+        emit togglePublicLinkShare(true);
     }
 }
 

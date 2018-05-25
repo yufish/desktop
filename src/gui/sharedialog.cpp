@@ -207,6 +207,7 @@ void ShareDialog::showSharingUi()
 
     if (userGroupSharing) {
         _userGroupWidget = new ShareUserGroupWidget(_accountState->account(), _sharePath, _localPath, _maxSharingPermissions, _privateLinkUrl, this);
+        connect(_userGroupWidget, &ShareUserGroupWidget::togglePublicLinkShare, this, &ShareDialog::slotTogglePublicLinkShareDisplay);
         _ui->shareUserVerticalLayout->addWidget(_userGroupWidget);
         _userGroupWidget->getShares();
     }
@@ -215,8 +216,18 @@ void ShareDialog::showSharingUi()
         _linkWidget = new ShareLinkWidget(_accountState->account(), _sharePath, _localPath, _maxSharingPermissions, this);
         //_linkWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
         _ui->shareLinkVerticalLayout->addWidget(_linkWidget);
+        //_linkWidget->toggleButton(false);
         _linkWidget->getShares();
     }
+}
+
+void ShareDialog::slotTogglePublicLinkShareDisplay(bool show)
+{
+  qDebug() << "CLICK display public link share button!";
+  if(show)
+      _linkWidget->toggleButton(true);
+  else
+      _linkWidget->toggleButton(false);
 }
 
 void ShareDialog::slotThumbnailFetched(const int &statusCode, const QByteArray &reply)

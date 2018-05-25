@@ -72,6 +72,7 @@ ShareLinkWidget::ShareLinkWidget(AccountPtr account,
     //_ui->horizontalLayout_password->addWidget(_pi_password);
     //_ui->layout_editing->addWidget(_pi_editing, 0, 2);
     //_ui->horizontalLayout_expire->insertWidget(_ui->horizontalLayout_expire->count() - 1, _pi_date);
+    _ui->createShareButton->hide();
 
     connect(_ui->nameLineEdit, &QLineEdit::returnPressed, this, &ShareLinkWidget::slotShareNameEntered);
     connect(_ui->createShareButton, &QAbstractButton::clicked, this, &ShareLinkWidget::slotShareNameEntered);
@@ -186,6 +187,13 @@ ShareLinkWidget::~ShareLinkWidget()
     delete _ui;
 }
 
+void ShareLinkWidget::toggleButton(bool show){
+    if(show)
+        _ui->createShareButton->show();
+    else
+        _ui->createShareButton->hide();
+}
+
 void ShareLinkWidget::getShares()
 {
     if (_manager) {
@@ -268,7 +276,7 @@ void ShareLinkWidget::slotSharesFetched(const QList<QSharedPointer<Share>> &shar
     }
 
     if (!_namesSupported) {
-        _ui->createShareButton->setEnabled(table->rowCount() == 0);
+        _ui->createShareButton->setHidden(table->rowCount() == 0);
     }
     if(table->rowCount() == 0)
         _ui->linkShares->setHidden(true);
@@ -286,7 +294,7 @@ void ShareLinkWidget::slotShareSelectionChanged()
 
     auto share = selectedShare();
     if (!share) {
-        _ui->shareProperties->setEnabled(false);
+        _ui->shareProperties->setHidden(false);
         _ui->shareProperties->setVisible(false);
         //_ui->radio_readOnly->setChecked(false);
         //_ui->radio_readWrite->setChecked(false);
@@ -444,6 +452,8 @@ void ShareLinkWidget::slotShareNameEntered()
     }
     _pi_create->startAnimation();
     _manager->createLinkShare(_sharePath, _ui->nameLineEdit->text(), QString());
+    if(!_account->capabilities().sharePublicLinkMultiple())
+        _ui->createShareButton->setHidden(true);
     _ui->linkShares->setHidden(false);
 }
 

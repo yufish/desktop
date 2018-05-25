@@ -53,6 +53,7 @@ private slots:
     void slotPropfindError();
     void slotThumbnailFetched(const int &statusCode, const QByteArray &reply);
     void slotAccountStateChanged(int state);
+    void slotTogglePublicLinkShareDisplay(bool show);
 
 private:
     void showSharingUi();
