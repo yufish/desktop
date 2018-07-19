@@ -214,14 +214,11 @@ void ShareUserGroupWidget::getShares()
 
 void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> &shares)
 {
-    if(shares.size() > 0){
+    //if(shares.size() > 0){
         QScrollArea *scrollArea = _ui->scrollArea;
 
         auto newViewPort = new QWidget(scrollArea);
         auto layout = new QVBoxLayout(newViewPort);
-        layout->setMargin(0);
-        layout->setSpacing(0);
-
         QSize minimumSize = newViewPort->sizeHint();
         int x = 0;
 
@@ -245,6 +242,10 @@ void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> 
             }
         }
 
+        if (!layout->isEmpty()) {
+            layout->addStretch(1);
+        }
+
         minimumSize.rwidth() += layout->spacing();
         minimumSize.rheight() += layout->spacing();
         scrollArea->setMinimumSize(minimumSize);
@@ -252,11 +253,10 @@ void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> 
 
         _disableCompleterActivated = false;
         _ui->shareeLineEdit->setEnabled(true);
-        _ui->scrollArea->setVisible(true);
 
-    } else {
-        _ui->scrollArea->setVisible(false);
-    }
+//    } else {
+//        _ui->scrollArea->setVisible(false);
+//    }
 }
 
 void ShareUserGroupWidget::slotAdjustScrollWidgetSize()
