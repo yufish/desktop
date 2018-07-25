@@ -24,6 +24,7 @@
 #include <QList>
 #include <QVector>
 #include <QTimer>
+#include <qscrollarea.h>
 
 class QAction;
 class QCompleter;
@@ -88,6 +89,7 @@ private slots:
 
 private:
     Ui::ShareUserGroupWidget *_ui;
+    QScrollArea *_parentScrollArea;
     AccountPtr _account;
     QString _sharePath;
     QString _localPath;

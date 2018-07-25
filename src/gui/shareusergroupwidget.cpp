@@ -34,7 +34,6 @@
 #include <QFileInfo>
 #include <QAbstractProxyModel>
 #include <QCompleter>
-#include <qscrollarea.h>
 #include <qlayout.h>
 #include <QPropertyAnimation>
 #include <QMenu>
@@ -44,6 +43,7 @@
 #include <QCryptographicHash>
 #include <QColor>
 #include <QPainter>
+#include <QListWidget>
 
 namespace OCC {
 
@@ -137,6 +137,8 @@ ShareUserGroupWidget::ShareUserGroupWidget(AccountPtr account,
     //_ui->permissionToolButton->setDefaultAction(canEdit);
     _ui->permissionToolButton->setMenu(menu);
     _ui->permissionToolButton->setPopupMode(QToolButton::InstantPopup);
+
+    _parentScrollArea = parentWidget()->findChild<QScrollArea*>("scrollArea");
 }
 
 ShareUserGroupWidget::~ShareUserGroupWidget()
@@ -195,7 +197,7 @@ void ShareUserGroupWidget::searchForSharees()
     QSharedPointer<Sharee> currentUser(new Sharee(_account->credentials()->user(), "", Sharee::Type::User));
     blacklist << currentUser;
 
-    foreach (auto sw, _ui->scrollArea->findChildren<ShareUserLine *>()) {
+    foreach (auto sw, _parentScrollArea->findChildren<ShareUserLine *>()) {
         blacklist << sw->share()->getShareWith();
     }
     _ui->errorLabel->hide();
@@ -210,7 +212,7 @@ void ShareUserGroupWidget::getShares()
 void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> &shares)
 {
     //if(shares.size() > 0){
-        QScrollArea *scrollArea = _ui->scrollArea;
+        QScrollArea *scrollArea = _parentScrollArea;
 
         auto newViewPort = new QWidget(scrollArea);
         auto layout = new QVBoxLayout(newViewPort);
@@ -223,7 +225,7 @@ void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> 
                 continue;
             }
 
-            ShareUserLine *s = new ShareUserLine(share, _maxSharingPermissions, _isFile, _ui->scrollArea);
+            ShareUserLine *s = new ShareUserLine(share, _maxSharingPermissions, _isFile, _parentScrollArea);
             connect(s, &ShareUserLine::resizeRequested, this, &ShareUserGroupWidget::slotAdjustScrollWidgetSize);
             connect(s, &ShareUserLine::visualDeletionDone, this, &ShareUserGroupWidget::getShares);
             s->setBackgroundRole(layout->count() % 2 == 0 ? QPalette::Base : QPalette::AlternateBase);
@@ -238,10 +240,10 @@ void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> 
         }
 
         if (!layout->isEmpty()) {
-            _ui->scrollArea->setVisible(true);
+            _parentScrollArea->setVisible(true);
             layout->addStretch(1);
         } else {
-            _ui->scrollArea->setVisible(false);
+            _parentScrollArea->setVisible(false);
         }
 
         minimumSize.rwidth() += layout->spacing();
@@ -259,7 +261,7 @@ void ShareUserGroupWidget::slotSharesFetched(const QList<QSharedPointer<Share>> 
 
 void ShareUserGroupWidget::slotAdjustScrollWidgetSize()
 {
-    QScrollArea *scrollArea = _ui->scrollArea;
+    QScrollArea *scrollArea = _parentScrollArea;
     if (scrollArea->findChildren<ShareUserLine *>().count() <= 3 &&
             scrollArea->findChildren<ShareUserLine *>().count() > 0) {
         auto minimumSize = scrollArea->widget()->sizeHint();
@@ -303,14 +305,14 @@ void ShareUserGroupWidget::slotCompleterActivated(const QModelIndex &index)
     // model proxying the _completerModel
     auto sharee = qvariant_cast<QSharedPointer<Sharee>>(index.data(Qt::UserRole));
     if (sharee.isNull()) {
-        _ui->scrollArea->setVisible(false);
+        _parentScrollArea->setVisible(false);
         return;
     }
 
     /*
      * Add spinner to the bottom of the widget list
      */
-    auto viewPort = _ui->scrollArea->widget();
+    auto viewPort = _parentScrollArea->widget();
     auto layout = qobject_cast<QVBoxLayout *>(viewPort->layout());
 //    auto indicator = new QProgressIndicator(viewPort);
 //    indicator->startAnimation();
@@ -348,9 +350,9 @@ void ShareUserGroupWidget::slotCompleterActivated(const QModelIndex &index)
     _ui->shareeLineEdit->setText(QString());
 
     if(layout->isEmpty())
-        _ui->scrollArea->setVisible(false);
+        _parentScrollArea->setVisible(false);
     else
-        _ui->scrollArea->setVisible(true);
+        _parentScrollArea->setVisible(true);
 }
 
 void ShareUserGroupWidget::slotCompleterHighlighted(const QModelIndex &index)
@@ -365,7 +367,7 @@ void ShareUserGroupWidget::displayError(int code, const QString &message)
     _pi_sharee.stopAnimation();
 
     // Also remove the spinner in the widget list, if any
-    foreach (auto pi, _ui->scrollArea->findChildren<QProgressIndicator *>()) {
+    foreach (auto pi, _parentScrollArea->findChildren<QProgressIndicator *>()) {
         delete pi;
     }
 
