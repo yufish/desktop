@@ -144,6 +144,7 @@ private:
     QSharedPointer<Share> _share;
     bool _isFile;
 
+    QAction *_permissionShare;
     QAction *_permissionCreate;
     QAction *_permissionUpdate;
     QAction *_permissionDelete;
