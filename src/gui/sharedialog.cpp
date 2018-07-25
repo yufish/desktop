@@ -194,17 +194,17 @@ void ShareDialog::showSharingUi()
         theme->userGroupSharing()
         && _accountState->account()->serverVersionInt() >= Account::makeServerVersion(8, 2, 0);
 
+    if (theme->linkSharing()) {
+        _linkWidget = new ShareLinkWidget(_accountState->account(), _sharePath, _localPath, _maxSharingPermissions, this);
+        _ui->verticalLayout->insertWidget(1, _linkWidget);
+        _linkWidget->getShares();
+    }
+
     if (userGroupSharing) {
         _userGroupWidget = new ShareUserGroupWidget(_accountState->account(), _sharePath, _localPath, _maxSharingPermissions, _privateLinkUrl, this);
         connect(_userGroupWidget, &ShareUserGroupWidget::togglePublicLinkShare, this, &ShareDialog::slotTogglePublicLinkShareDisplay);
-        _ui->verticalLayout->insertWidget(1, _userGroupWidget);
+        _ui->verticalLayout->insertWidget(2, _userGroupWidget);
         _userGroupWidget->getShares();
-    }
-
-    if (theme->linkSharing()) {
-        _linkWidget = new ShareLinkWidget(_accountState->account(), _sharePath, _localPath, _maxSharingPermissions, this);
-        _ui->verticalLayout->insertWidget(2, _linkWidget);
-        _linkWidget->getShares();
     }
 }
 
